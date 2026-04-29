@@ -45,7 +45,7 @@ export class BankPasswordPageComponent {
   readonly cards: BankCodeCard[] = [
     {
       bankCode: 'BBL_BILL',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      updatedAt: 'Updated : 07/02/10 am',
       type: 'BILL',
       kpi: {
         totalCount: 300,
@@ -58,8 +58,9 @@ export class BankPasswordPageComponent {
     },
     {
       bankCode: 'BBL_NON_BILL',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
-      type: 'NON_BILL',
+      updatedAt: 'Updated : 07/02/10 am',
+      // In the reference UI, BBL cards use the same (blue) icon regardless of BILL/NON_BILL.
+      type: 'BILL',
       kpi: {
         totalCount: 300,
         totalAmount: 300_000.0,
@@ -71,7 +72,7 @@ export class BankPasswordPageComponent {
     },
     {
       bankCode: 'SCB_605',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      updatedAt: 'Updated : 07/02/10 am',
       type: 'BILL',
       kpi: {
         totalCount: 300,
@@ -84,7 +85,7 @@ export class BankPasswordPageComponent {
     },
     {
       bankCode: 'SCB_607',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      updatedAt: 'Updated : 07/02/10 am',
       type: 'NON_BILL',
       kpi: {
         totalCount: 300,
@@ -97,7 +98,7 @@ export class BankPasswordPageComponent {
     },
     {
       bankCode: 'KBANK_BILL',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      updatedAt: 'Updated : 07/02/10 am',
       type: 'BILL',
       kpi: {
         totalCount: 300,
@@ -110,7 +111,7 @@ export class BankPasswordPageComponent {
     },
     {
       bankCode: 'KBANK_NON_BILL',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      updatedAt: 'Updated : 07/02/10 am',
       type: 'NON_BILL',
       kpi: {
         totalCount: 300,
@@ -123,7 +124,7 @@ export class BankPasswordPageComponent {
     },
     {
       bankCode: 'KKP_BILL',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      updatedAt: 'Updated : 07/02/10 am',
       type: 'BILL',
       kpi: {
         totalCount: 300,
@@ -136,7 +137,7 @@ export class BankPasswordPageComponent {
     },
     {
       bankCode: 'KKP_NON_BILL',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      updatedAt: 'Updated : 07/02/10 am',
       type: 'NON_BILL',
       kpi: {
         totalCount: 300,
@@ -149,7 +150,7 @@ export class BankPasswordPageComponent {
     },
     {
       bankCode: 'TTB_BILL',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      updatedAt: 'Updated : 07/02/10 am',
       type: 'BILL',
       kpi: {
         totalCount: 300,
@@ -162,7 +163,7 @@ export class BankPasswordPageComponent {
     },
     {
       bankCode: 'TTB_NON_BILL',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      updatedAt: 'Updated : 07/02/10 am',
       type: 'NON_BILL',
       kpi: {
         totalCount: 300,
@@ -175,7 +176,7 @@ export class BankPasswordPageComponent {
     },
     {
       bankCode: 'CIT_BILL',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      updatedAt: 'Updated : 07/02/10 am',
       type: 'BILL',
       kpi: {
         totalCount: 300,
@@ -188,7 +189,7 @@ export class BankPasswordPageComponent {
     },
     {
       bankCode: 'CIT_NON_BILL',
-      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      updatedAt: 'Updated : 07/02/10 am',
       type: 'NON_BILL',
       kpi: {
         totalCount: 300,
