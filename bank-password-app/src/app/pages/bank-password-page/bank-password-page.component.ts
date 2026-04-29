@@ -2,11 +2,20 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-interface BankPasswordRow {
-  bankCode: string;
-  updatedAt: string;
-  activeFrom: string;
-  activeTo: string;
+type CardType = 'BILL' | 'NON_BILL';
+
+interface BankCodeCard {
+  bankCode: string; // e.g. "BBL_BILL"
+  updatedAt: string; // e.g. "Updated : 07/02/24 at 05:10:20 am"
+  type: CardType;
+  kpi: {
+    totalCount: number;
+    totalAmount: number;
+    failCount: number;
+    failAmount: number;
+    completedCount: number;
+    completedAmount: number;
+  };
 }
 
 @Component({
@@ -17,53 +26,193 @@ interface BankPasswordRow {
   styleUrls: ['./bank-password-page.component.scss'],
 })
 export class BankPasswordPageComponent {
-  formModel = {
-    bankCode: 'SCB 605',
-    username: '',
-    password1: '',
-    password2: '',
-    activeFrom: '',
-    activeTo: '',
+  filterModel = {
+    inputBankCode: '',
+    date: '2026-01-26',
   };
 
-  readonly bankCodeOptions = [
-    'BAY',
-    'BBL',
-    'KBANK',
-    'SCB',
-    'SCB 605',
-    'SCB 607',
-    'SCB 779',
-    'KKP',
-    'TTB',
-    'CIT',
-    'UOB',
+  readonly summary = {
+    title: 'MSIG (รวมทุกธนาคาร)',
+    updatedAt: '26/01/2026',
+    rows: [
+      { label: 'จำนวนรายการ', count: 3_300, amount: 3_300_000.0, color: 'normal' as const },
+      { label: 'จำนวนที่ไม่สำเร็จ', count: 110, amount: 110_000.0, color: 'normal' as const },
+      { label: 'ยอดที่ไม่สำเร็จ', count: 7_590, amount: 7_590_000.0, color: 'danger' as const },
+      { label: 'รวม', count: 11_000, amount: 11_000_000.0, color: 'total' as const },
+    ],
+  };
+
+  readonly cards: BankCodeCard[] = [
+    {
+      bankCode: 'BBL_BILL',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
+    {
+      bankCode: 'BBL_NON_BILL',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'NON_BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
+    {
+      bankCode: 'SCB_605',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
+    {
+      bankCode: 'SCB_607',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'NON_BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
+    {
+      bankCode: 'KBANK_BILL',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
+    {
+      bankCode: 'KBANK_NON_BILL',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'NON_BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
+    {
+      bankCode: 'KKP_BILL',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
+    {
+      bankCode: 'KKP_NON_BILL',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'NON_BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
+    {
+      bankCode: 'TTB_BILL',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
+    {
+      bankCode: 'TTB_NON_BILL',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'NON_BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
+    {
+      bankCode: 'CIT_BILL',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
+    {
+      bankCode: 'CIT_NON_BILL',
+      updatedAt: 'Updated : 07/02/24 15:10:01 am',
+      type: 'NON_BILL',
+      kpi: {
+        totalCount: 300,
+        totalAmount: 300_000.0,
+        completedCount: 10,
+        completedAmount: 10_000.0,
+        failCount: 690,
+        failAmount: 690_000.0,
+      },
+    },
   ];
 
-  readonly rows: BankPasswordRow[] = [
-    { bankCode: 'BAY', updatedAt: '2025/12/20 15:01:01', activeFrom: '2025/02/30', activeTo: '2026/02/30' },
-    { bankCode: 'BBL', updatedAt: '2025/12/20 15:01:01', activeFrom: '2025/02/30', activeTo: '2026/02/30' },
-    { bankCode: 'KBANK', updatedAt: '2025/12/20 15:01:01', activeFrom: '2025/02/30', activeTo: '2026/02/30' },
-    { bankCode: 'SCB', updatedAt: '2025/12/20 15:01:01', activeFrom: '2025/02/30', activeTo: '2026/02/30' },
-    { bankCode: 'SCB 607', updatedAt: '2025/12/20 15:01:01', activeFrom: '2025/02/30', activeTo: '2026/02/30' },
-    { bankCode: 'SCB 779', updatedAt: '2025/12/20 15:01:01', activeFrom: '2025/02/30', activeTo: '2026/02/30' },
-    { bankCode: 'KKP', updatedAt: '2025/12/20 15:01:01', activeFrom: '2025/02/30', activeTo: '2026/02/30' },
-    { bankCode: 'TTB', updatedAt: '2025/12/20 15:01:01', activeFrom: '2025/02/30', activeTo: '2026/02/30' },
-    { bankCode: 'CIT', updatedAt: '2025/12/20 15:01:01', activeFrom: '2025/02/30', activeTo: '2026/02/30' },
-    { bankCode: 'UOB', updatedAt: '2025/12/20 15:01:01', activeFrom: '2025/02/30', activeTo: '2026/02/30' },
-  ];
-
-  readonly pageSizeOptions = [10, 20, 50];
+  // Same pagination pattern as the previous page.
+  readonly pageSizeOptions = [6, 10, 12];
   pageSize = 10;
   currentPage = 1;
 
   get totalPages(): number {
-    return Math.max(1, Math.ceil(this.rows.length / this.pageSize));
+    return Math.max(1, Math.ceil(this.cards.length / this.pageSize));
   }
 
-  get pagedRows(): BankPasswordRow[] {
+  get pagedCards(): BankCodeCard[] {
     const start = (this.currentPage - 1) * this.pageSize;
-    return this.rows.slice(start, start + this.pageSize);
+    return this.cards.slice(start, start + this.pageSize);
   }
 
   get pageNumbers(): number[] {
@@ -81,18 +230,7 @@ export class BankPasswordPageComponent {
     this.currentPage = page;
   }
 
-  save(): void {
-    // UI only.
-  }
-
-  clear(): void {
-    this.formModel = {
-      bankCode: 'SCB 605',
-      username: '',
-      password1: '',
-      password2: '',
-      activeFrom: '',
-      activeTo: '',
-    };
+  formatMoney(value: number): string {
+    return value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 }
