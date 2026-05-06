@@ -1,0 +1,131 @@
+<div class="reconcile-page">
+  <section class="top-filter">
+    <select [(ngModel)]="selectedMonth">
+      <option *ngFor="let month of months" [value]="month">{{ month }}</option>
+    </select>
+
+    <select [(ngModel)]="selectedBank">
+      <option *ngFor="let bank of banks" [value]="bank">{{ bank }}</option>
+    </select>
+
+    <button type="button" class="refresh-icon" aria-label="refresh">↻</button>
+    <p class="data-as-of">
+      Data as of: <strong>{{ result?.dataAsOf || '18 Mar 2026' }}</strong>
+      <span>(based on latest processed)</span>
+    </p>
+  </section>
+
+  <section class="empty-state" *ngIf="!hasSearched">
+    <div class="empty-state__content">
+      <div class="empty-state__icon">⌕</div>
+      <p>No data</p>
+    </div>
+  </section>
+
+  <ng-container *ngIf="hasSearched && result as r">
+    <section class="summary-panel">
+      <div class="summary-panel__head">
+        <h2>Reconcilication Summary</h2>
+        <button type="button" class="export-btn">Export</button>
+      </div>
+
+      <div class="summary-cards">
+        <article class="summary-card summary-card--blue">
+          <p class="summary-card__label">GL TOTAL (P400)</p>
+          <h3>{{ r.summary.glTotal | number: '1.2-2' }}</h3>
+          <span>THB</span>
+        </article>
+        <article class="summary-card summary-card--green">
+          <p class="summary-card__label">SUMMARY TOTAL (BANK STATEMENT)</p>
+          <h3>{{ r.summary.summaryTotal | number: '1.2-2' }}</h3>
+          <span>THB</span>
+        </article>
+        <article class="summary-card summary-card--red">
+          <p class="summary-card__label">DIFFERENCE</p>
+          <h3>{{ r.summary.difference | number: '1.2-2' }}</h3>
+          <span>THB</span>
+        </article>
+      </div>
+
+      <h3 class="items-title">Items</h3>
+      <div class="items-grid">
+        <div class="item-chip" [ngClass]="'item-chip--' + item.tone" *ngFor="let item of r.summary.items">
+          <span>{{ item.label }}</span>
+          <strong>{{ item.value }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="search-panel">
+      <h3>Search Records</h3>
+      <div class="search-grid">
+        <div class="search-column">
+          <h4>General Search</h4>
+          <input placeholder="Status" />
+          <input placeholder="E/TM Date (Summary Tran Date)" />
+          <input placeholder="E/F Date (GL Effective Date)" />
+        </div>
+        <div class="search-column">
+          <h4>Specific Search</h4>
+          <input placeholder="Receipt No, e.g. RC010000" />
+          <input placeholder="Amount, e.g. 50000.00" />
+          <input placeholder="User_Profile, e.g. SOP4-FIN" />
+        </div>
+      </div>
+      <div class="search-panel__actions">
+        <button type="button" class="btn btn--search">ค้นหา</button>
+        <button type="button" class="btn btn--reset" (click)="onReset()">ล้างค่า</button>
+      </div>
+    </section>
+
+    <section class="table-panel">
+      <h3>รายการทั้งหมด</h3>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>DOCNUM</th>
+              <th>AMT</th>
+              <th>EFFDMY</th>
+              <th>TRANDESC</th>
+              <th>USER_PROFILE</th>
+              <th>TRANDESC(2)</th>
+              <th>Diff RC</th>
+              <th>Diff Amount</th>
+              <th>Status</th>
+              <th>TRAN DATE</th>
+              <th>RECEIPT NO</th>
+              <th>RECEIPT AMOUNT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of r.records; trackBy: rowTrackBy">
+              <td>{{ row.docNum }}</td>
+              <td>{{ row.amount }}</td>
+              <td>{{ row.effDate }}</td>
+              <td>{{ row.tranDesc }}</td>
+              <td>{{ row.userProfile }}</td>
+              <td>{{ row.tranDesc2 }}</td>
+              <td>{{ row.diffRc }}</td>
+              <td [class.text-danger]="row.diffAmount.startsWith('-')">{{ row.diffAmount }}</td>
+              <td><span class="status-pill" [ngClass]="'status-pill--' + row.statusTone">{{ row.status }}</span></td>
+              <td>{{ row.tranDate }}</td>
+              <td>{{ row.receiptNo }}</td>
+              <td>{{ row.receiptAmount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-footer">
+        <span>PageSize 10</span>
+        <span>แสดง 10 ใน 105 รายการ</span>
+        <span>Previous 1 2 3 ... 10 Next</span>
+      </div>
+    </section>
+  </ng-container>
+
+  <div class="page-actions">
+    <button type="button" class="btn btn--search" (click)="onSearch()">ค้นหา</button>
+  </div>
+</div>

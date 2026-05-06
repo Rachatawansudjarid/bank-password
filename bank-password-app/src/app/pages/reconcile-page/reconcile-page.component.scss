@@ -1,0 +1,308 @@
+:host {
+  display: block;
+  background: #f3f5f9;
+  min-height: 100%;
+  padding: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1f2937;
+}
+
+.reconcile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.top-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid #e3e7ef;
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+select,
+input {
+  height: 34px;
+  border: 1px solid #dde3ed;
+  border-radius: 6px;
+  padding: 0 10px;
+  background: #fff;
+  color: #374151;
+  font-size: 12px;
+}
+
+select {
+  min-width: 220px;
+}
+
+.refresh-icon {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #d9e4ff;
+  border-radius: 6px;
+  background: #f5f9ff;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+.data-as-of {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.data-as-of strong {
+  color: #0f172a;
+}
+
+.empty-state {
+  min-height: 640px;
+  background: #f3f3f3;
+  border: 1px solid #dfe4ec;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+}
+
+.empty-state__content {
+  text-align: center;
+  color: #a1a1aa;
+}
+
+.empty-state__icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.summary-panel,
+.search-panel,
+.table-panel {
+  background: #fff;
+  border: 1px solid #e3e7ef;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.summary-panel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary-panel__head h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.export-btn {
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid #93c5fd;
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+.summary-cards {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.summary-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  border-top-width: 4px;
+}
+
+.summary-card__label {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.summary-card h3 {
+  margin: 14px 0 4px;
+  font-size: 34px;
+}
+
+.summary-card span {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.summary-card--blue {
+  border-top-color: #2563eb;
+}
+
+.summary-card--green {
+  border-top-color: #059669;
+}
+
+.summary-card--red {
+  border-top-color: #dc2626;
+}
+
+.summary-card--red h3 {
+  color: #dc2626;
+}
+
+.items-title {
+  margin: 16px 0 8px;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.item-chip {
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.item-chip--green {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.item-chip--yellow {
+  background: #fffbeb;
+  color: #b45309;
+}
+
+.item-chip--orange {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.item-chip--purple {
+  background: #f5f3ff;
+  color: #6d28d9;
+}
+
+.search-panel h3,
+.table-panel h3 {
+  margin: 0 0 10px;
+}
+
+.search-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.search-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.search-column h4 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.search-panel__actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  height: 32px;
+  min-width: 72px;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  padding: 0 14px;
+  cursor: pointer;
+}
+
+.btn--search {
+  background: #1d4ed8;
+}
+
+.btn--reset {
+  background: #dc2626;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1200px;
+  font-size: 12px;
+}
+
+th,
+td {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+}
+
+.status-pill {
+  font-size: 11px;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-weight: 700;
+}
+
+.status-pill--green {
+  color: #047857;
+  background: #d1fae5;
+}
+
+.status-pill--yellow {
+  color: #b45309;
+  background: #fef3c7;
+}
+
+.status-pill--orange {
+  color: #c2410c;
+  background: #fed7aa;
+}
+
+.status-pill--purple {
+  color: #6d28d9;
+  background: #ede9fe;
+}
+
+.text-danger {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.table-footer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.page-actions {
+  display: flex;
+  justify-content: flex-end;
+}
